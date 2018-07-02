@@ -1,0 +1,79 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>{% block title %}登录{% endblock %}</title>
+
+    <!-- Bootstrap -->
+    <link href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/blog_nav.css' %}" rel="stylesheet">
+    <link href="{% static 'blog/css/login.css' %}" rel="stylesheet">
+    {% block css %}
+    {% endblock %}
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+     <div class="container">
+        <div class="col-md-4 col-md-offset-4">
+          <form class='form-login' action="{% url 'blog:blog_loginto' %}" method="post">
+              {% if message %}
+                  <div class="alert alert-warning">{{ message }}</div>>
+              {% endif %}
+              {% csrf_token %}
+              <h2 class="text-center">欢迎登录</h2>
+              <div class="form-group">
+                <label for="id_username">用户名：</label>
+                <input type="text" name='username' class="form-control" id="id_username" placeholder="Username" autofocus required>
+              </div>
+              <div class="form-group">
+                <label for="id_password">密码：</label>
+                <input type="password" name='password' class="form-control" id="id_password" placeholder="Password" required>
+              </div>
+              <button type="reset" class="btn btn-default pull-left">重置</button>
+              <button type="submit" class="btn btn-primary pull-right">提交</button>
+          </form>
+        </div>
+    </div>
+
+    <footer>
+    <div class="footer" role="navigation">
+        <div class="container">
+            <div class="navbar-text">
+                <ul class="footer-text">
+                    <li><a href="#">主页</a></li>
+                    <li><a href="#">联系我们</a></li>
+                    <li><a href="#">关于博主</a></li>
+                    <li><a href="#">文档支持</a></li>
+                    <li><a href="/blog/">博客首页</a></li>
+                </ul>
+                <p>Copyright © 2018  戴启乐的博客</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{% static 'jquery-3.2.1.min.js' %}"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{% static 'bootstrap-3.3.7-dist/js/bootstrap.js' %}"></script>
+    <script>
+        $("#back-to-top").click(function () {
+            window.scrollTo(0,0);
+        });
+    </script>
+
+
+    {% block script %}
+    {% endblock %}
+  </body>
+</html>
