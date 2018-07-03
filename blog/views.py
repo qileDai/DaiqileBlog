@@ -1,7 +1,9 @@
 #_*_coding:utf8_*_
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
-
+from django.shortcuts import redirect
+from django_comments.models import Comment
+from django_comments import models as comment_models
 from . import models
 import markdown
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
@@ -151,6 +153,20 @@ def detail(request,blog_id):
         'markdown.extensions.toc',
     ])
     # entry  = models.Entry.objects.get(id =blog_id)
+
+    comment_list = []
+
+    def get_comment_list(comments):
+        for comment in comments:
+            comment_list.append(comment)
+            children = comment.child_comment.all()
+            if len(children) > 0:
+                get_comment_list(children)
+
+    top_comments = Comment.objects.filter(object_pk=blog_id, parent_comment=None,
+                                          content_type__app_label='blog').order_by('-submit_date')
+
+    get_comment_list(top_comments)
     entry = get_object_or_404(models.Entry,id=blog_id)
     entry.body = md.convert(entry.body)
     entry.toc = md.toc
@@ -236,3 +252,14 @@ def loginto(request):
             return render(request, 'blog/login.html', locals())
     return render(request, 'blog/login.html', locals())
 
+'''
+友情链接页面视图
+'''
+def brotherviews(request):
+    return render(request, 'blog/brother.html', locals())
+
+def reply(request, comment_id):
+	if not request.session.get('login', None) and not request.user.is_authenticated():
+	  return redirect('/')
+	parent_comment = get_object_or_404(comment_models.Comment, id=comment_id)
+	return render(request, 'blog/reply.html', locals())
