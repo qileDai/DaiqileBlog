@@ -1,6 +1,7 @@
 {% extends 'blog/base.html' %}
 {% load static %}
 {% load comments %}
+{% load comments i18n %}
 {% block title %}博客详细页面{% endblock %}
 {% block css %}
     <link href="{% static 'blog/css/github.css' %}" rel="stylesheet" />
@@ -9,7 +10,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-9">
-                <h1>{{ entry.title }}</h1>
+                <h2>{{ entry.title }}</h2>
                 <p>
                     <strong>{{ entry.author }}</strong>
                     &nbsp;&nbsp;&nbsp;&nbsp;{{ entry.created_time|date:'Y年m月d日' }}
@@ -62,10 +63,8 @@
                             </div>
                         </div>
                         <span style="display: none;">{{ form.honeypot }}</span>
-                        {{ form.content_type }}
-                        {{ form.object_pk }}
-                        {{ form.timestamp }}
-                        {{ form.security_hash }}
+                        {{form.content_type}} {{form.object_pk}} {{form.timestamp}} {{form.security_hash}}
+
                         <input type="hidden" name="next" value="{% url 'blog:blog_detail' entry.id %}" />
                         <input  name="parent_id" type="hidden" value="-1" />
                         <input  name="level" type="hidden" value="0" />
@@ -85,7 +84,7 @@
             {% else %}
                 <h3>登陆后才可以评论</h3>
             {% endif %}
-            <hr />
+            <br />
 
 
 {#            评论显示区#}
@@ -94,9 +93,9 @@
                 <div class="single_comment" style="margin-left: {{ comment.level }}em">
                     <div>
                         {% if comment.user_img %}
-                            <img src="{{ comment.user_img }}" alt="user_image" />
+                            <img src="{{ comment.user_img }}" alt="user_image" style="width: 60px" height="60px"/>
                         {% else %}
-                            <img src="{% static 'blog/images/admin_image.jpg' %}" />
+                            <img src="{% static 'blog/imgs/admin.jpg' %}" style="width: 60px" height="60px"/>
                         {% endif %}
                     </div>
                     <div class="col-md-11 comment-content" style="margin-bottom: 10px;">
@@ -109,7 +108,7 @@
                             {% else %}
                                     By&nbsp;&nbsp;
                                         {{ comment.user_name }}{{ request.user }}
-                                    &nbsp;&nbsp;&nbsp;On&nbsp;&nbsp;
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             {% endif %}
                             <em>{{ comment.submit_date }}</em>
                             {% if request.session.login or request.user.is_authenticated %}
@@ -133,7 +132,7 @@
                             {{ entry.toc|safe }}
                         </div>
                     </div>
-                    <hr />
+                    <br />
                 {% endblock %}
             {% include 'blog/right_side.html' %}
 

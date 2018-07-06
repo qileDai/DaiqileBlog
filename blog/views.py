@@ -6,6 +6,7 @@ from django_comments.models import Comment
 from django_comments import models as comment_models
 from . import models
 import markdown
+from blog import forms
 from django.core.paginator import Paginator,EmptyPage,PageNotAnInteger
 from django.db.models import Q
 
@@ -234,23 +235,27 @@ def logout(request):
 
 def loginto(request):
     if request.method == 'POST':
-        usename = request.POST.get('usename')
-        password = request.POST.get('password')
-        if usename and password:
-            usename = usename.strip()
-            # 用户名字符合法性验证
-            # 密码长度验证
-            # 更多的其它验证.....
+        login_form = forms.UserForm(request.POST)
+        message = '请检查写的内容'
+
+        if login_form.is_valid():
+            username = login_form.cleaned_data['username']
+            password = login_form.cleaned_data['password']
             try:
-                user = models.Uesr.objects.get(name=usename)
-                if usename.password == password:
-                    return render(request, 'blog/index.html', locals())
+                user = models.Uesr.objects.get(name=username)
+                if username.password == password:
+                    return render(request, 'blog/detail.html', locals())
                 else:
                     message = '密码不正确'
             except:
                 message = '用户不存在'
-            return render(request, 'blog/login.html', locals())
+        return render(request, 'blog/login.html', locals())
+    login_form = forms.UserForm()
     return render(request, 'blog/login.html', locals())
+
+
+
+
 
 '''
 友情链接页面视图
@@ -259,7 +264,7 @@ def brotherviews(request):
     return render(request, 'blog/brother.html', locals())
 
 def reply(request, comment_id):
-	if not request.session.get('login', None) and not request.user.is_authenticated():
-	  return redirect('/')
-	parent_comment = get_object_or_404(comment_models.Comment, id=comment_id)
-	return render(request, 'blog/reply.html', locals())
+    if not request.session.get('login',None) and not request.user.is_authenticated():
+        return  redirect('/')
+    parrment_comment = get_object_or_404(comment_models.Comment,id=comment_id)
+    return render(request,'blog/reply.html',locals())
