@@ -248,6 +248,7 @@ def loginto(request):
                 else:
                     message = '密码不正确'
             except:
+
                 message = '用户不存在'
         return render(request, 'blog/login.html', locals())
     login_form = forms.UserForm()
