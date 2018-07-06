@@ -32,7 +32,7 @@ def archives():
 
 @register.simple_tag
 def get_entry_count_of_date(year, month):
-    return Entry.objects.filter(created_time__year=year, created_time__month=month).count()
+    return Entry.objects.filter(created_time__year=year,created_time__month=month).count()
 
 
 @register.simple_tag

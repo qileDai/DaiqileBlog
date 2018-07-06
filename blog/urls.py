@@ -16,5 +16,6 @@ urlpatterns = [
     url(r'^loginto/$', views.loginto,name='blog_loginto'),
     url(r'^brotherviews/$', views.brotherviews,name='blog_brotherviews'),
     url(r'^reply/(?P<comment_id>\d+)/$', views.reply, name='comment_reply'),
+    url(r'^pythonnotes/$', views.pythonnotes,name='blog_pythonnotes'),
 
 ]

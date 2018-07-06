@@ -269,3 +269,6 @@ def reply(request, comment_id):
         return  redirect('/')
     parrment_comment = get_object_or_404(comment_models.Comment,id=comment_id)
     return render(request,'blog/reply.html',locals())
+
+def pythonnotes(request):
+    return render(request, 'blog/pythonnotes.html', locals())
