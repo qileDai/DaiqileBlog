@@ -51,9 +51,9 @@
                         {{ form.object_pk }}
                         {{ form.timestamp }}
                         {{ form.security_hash }}
-                        {{ form. }}
 
-                        <input type="hidden" name="next" value="{% url 'blog:blog_detail' parrment_comment.content_type_id %}" />
+
+                        <input type="hidden" name="next" value="{% url 'blog:blog_detail' parrment_comment.content_object.id %}" />
                         <input  name="parent_id" type="hidden" value="{{ parrment_comment.id }}" />
                         <input  name="level" type="hidden" value="{{ parent_comment.level }}" />
 
@@ -76,7 +76,7 @@
 
     <div>
          {{form.content_type}} {{form.object_pk}} {{form.timestamp}} {{form.security_hash}}
-       <a href="{% url 'blog:blog_detail' parrment_comment.content_type_id%}">暂时不评论，返回先前页面!</a>
+       <a href="{% url 'blog:blog_detail' parrment_comment.content_object.id%}">暂时不评论，返回先前页面!</a>
     </div>
 
     </div>
