@@ -23,9 +23,9 @@
                 <p>{{ entry.body|truncatechars:128 }}</p>
                 {% endif %}
                 <p>
-                    <span>作者：{{ entry.author }}</span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;发表时间：{{ entry.created_time|date:"Y年m月d日" }}</span>
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;浏览量：{{ entry.visiting }}</span>
+                    <span class="glyphicon glyphicon-user " >&nbsp;作者：{{ entry.author }}</span>&nbsp;&nbsp;
+                    <span class="glyphicon glyphicon-time" >&nbsp;发表时间：{{ entry.created_time|date:"Y年m月d日" }}</span>&nbsp;&nbsp;
+                    <span class="glyphicon glyphicon-eye-open">&nbsp;浏览量：{{ entry.visiting }}</span>
                 </p>
 
             {% endfor %}

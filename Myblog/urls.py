@@ -36,6 +36,7 @@ urlpatterns = [
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': {'blog': GenericSitemap(info_dict, priority=0.6)}},
         name='django.contrib.sitemaps.views.sitemap'),
     url(r'^comments/', include('django_comments.urls')),
+    url(r'^captcha', include('captcha.urls')) ,
 
 ]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 

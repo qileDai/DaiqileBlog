@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'django_comments',
     'django.contrib.sites',
+    'captcha',
 
 ]
 
