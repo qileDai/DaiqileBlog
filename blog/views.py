@@ -272,3 +272,6 @@ def reply(request, comment_id):
 
 def pythonnotes(request):
     return render(request, 'blog/pythonnotes.html', locals())
+
+def aboutauthor(request):
+    return render(request, 'blog/aboutauthor.html', locals())

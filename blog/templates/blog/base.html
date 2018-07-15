@@ -39,7 +39,7 @@
         <div class="collapse navbar-collapse" id="my-nav">
           <ul class="nav navbar-nav">
               <li class="active"><a href="/blog/">博客</a></li>
-              <li><a href="#">关于博主</a></li>
+              <li class="active"><a href="{% url 'blog:blog_aboutauthor' %}">关于博主</a></li>
               <li><a href="#">胡言乱语</a></li>
               <li class="active"><a href="{% url 'blog:blog_pythonnotes' %}">Python笔记</a></li>
               <li class="active"><a href="{% url 'blog:blog_brotherviews' %}">友情链接</a></li>
