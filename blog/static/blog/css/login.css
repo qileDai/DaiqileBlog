@@ -1,6 +1,4 @@
-body{
-    background-color: #2aabd2;
-}
+
 .form-login{
     max-width: 330px;
     padding: 15px;
@@ -29,7 +27,7 @@ body{
   border-top-right-radius: 0;
 }
 .footer {
-    background-color: #2aabd2;
+
     height: 400px;
 }
 

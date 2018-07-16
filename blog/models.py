@@ -78,6 +78,7 @@ class Uesr(models.Model):
     password = models.CharField(max_length=256)
     email = models.EmailField(unique=True)
     sex = models.CharField(max_length=32,choices=gender,default='男')
+    # user_image = models.ImageField(upload_to='blog_images',null=True, blank=True, verbose_name='用户头像')
     c_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

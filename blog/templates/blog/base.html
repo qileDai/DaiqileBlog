@@ -12,6 +12,7 @@
     <!-- Bootstrap -->
     <link href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static 'blog/css/blog_nav.css' %}" rel="stylesheet">
+    <!--link href="{% static 'blog/css/login.css' %}" rel="stylesheet"-->
     {% block css %}
     {% endblock %}
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -52,14 +53,19 @@
             <button type="submit" class="btn btn-default">搜索</button>
           </form>
           <ul class="nav navbar-nav navbar-right">
-              {% if request.session.login %}
-                  <li>{{ request.session.screen_name }}<a href="/logout/?next={{ request.path }}">
-                      <i class="glyphicon glyphicon-log-out"></i>注销</a></li>
+              {% if  request.session.is_login %}
+                  <li><a href="#">当前在线：{{ request.session.user_name }}</a></li>
+                  <li><a href="/logout/">登出</a></li>
               {% else %}
-                <li>
-                    <a href="{% url 'blog:blog_login' %}">
-                        <i class="glyphicon glyphicon-log-in"></i>&nbsp;&nbsp;登录</a></li>
-              {% endif %}
+                  <li>
+                        <a href="{% url 'blog:blog_login' %}">
+                            <i class="glyphicon glyphicon-log-in"></i>&nbsp;&nbsp;登录</a>
+                  </li>
+
+                  <li>{{ request.session.screen_name }}<a href="{% url 'blog:blog_register' %}">
+                          <i class="glyphicon glyphicon-log-out"></i>注册</a>
+                  </li>
+             {% endif %}
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->

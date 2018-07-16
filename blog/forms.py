@@ -20,3 +20,4 @@ class RegisterForm(forms.Form):
     captcha = CaptchaField(label='验证码')
 
 
+
