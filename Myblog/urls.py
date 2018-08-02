@@ -33,6 +33,7 @@ urlpatterns = [
     url(r'^$',blog_views.index),
     url(r'^admin/', admin.site.urls),
     url(r'^blog/',include('blog.urls')),
+    url(r'^login/',include('login.urls')),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': {'blog': GenericSitemap(info_dict, priority=0.6)}},
         name='django.contrib.sitemaps.views.sitemap'),
     url(r'^comments/', include('django_comments.urls')),

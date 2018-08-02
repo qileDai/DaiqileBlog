@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django_comments',
     'django.contrib.sites',
     'captcha',
+    'login',
 
 ]
 
@@ -113,6 +114,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = '1101187142@qq.com'
+EMAIL_HOST_PASSWORD = 'qile13714304650'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/

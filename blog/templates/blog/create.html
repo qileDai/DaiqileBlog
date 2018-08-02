@@ -1,0 +1,239 @@
+{% extends 'blog/base.html' %}
+{% block title %}发表博客{% endblock %}
+{% block content %}
+
+
+
+    <!-- Content -->
+    <div id="content" class="colM">
+
+        <h1>增加 博客</h1>
+        <div id="content-main">
+
+
+
+<form enctype="multipart/form-data" action="" method="post" id="entry_form" novalidate><input type='hidden' name='csrfmiddlewaretoken' value='TATWXkFY16HFKUsDA9j5e2UtfuYvPORvtkoB9LumoaaK4dIQx7so437pErfvFEww' />
+<div>
+
+
+
+
+
+
+
+  <fieldset class="module aligned ">
+
+
+
+        <div class="form-row field-title">
+
+
+                <div>
+
+
+                        <label class="required" for="id_title">文章标题:</label>
+
+                            <input type="text" name="title" class="vTextField" maxlength="128" required id="id_title" />
+
+
+
+                </div>
+
+        </div>
+
+        <div class="form-row field-author">
+
+
+                <div>
+
+
+                        <label class="required" for="id_author">博客作者:</label>
+
+                            <div class="related-widget-wrapper">
+    <select name="author" required id="id_author">
+  <option value="" selected>---------</option>
+
+  <option value="1">admin</option>
+
+  <option value="3">daiqile1234</option>
+
+  <option value="2">戴启乐</option>
+
+</select>
+
+        <a class="related-widget-wrapper-link change-related" id="change_id_author"
+            data-href-template="/admin/auth/user/__fk__/change/?_to_field=id&amp;_popup=1"
+            title="更改选中的用户"><img src="/static/admin/img/icon-changelink.svg" alt="修改"/></a><a class="related-widget-wrapper-link add-related" id="add_id_author"
+            href="/admin/auth/user/add/?_to_field=id&amp;_popup=1"
+            title="增加另一个 用户"><img src="/static/admin/img/icon-addlink.svg" alt="增加"/></a>
+
+</div>
+
+
+
+                </div>
+
+        </div>
+
+        <div class="form-row field-img">
+
+
+                <div>
+
+
+                        <label for="id_img">博客配图:</label>
+
+                            <input type="file" name="img" id="id_img" />
+
+
+
+                </div>
+
+        </div>
+
+        <div class="form-row field-body">
+
+
+                <div>
+
+
+                        <label class="required" for="id_body">博客正文:</label>
+
+                            <textarea name="body" cols="40" rows="10" class="vLargeTextField" required id="id_body">
+</textarea>
+
+
+
+                </div>
+
+        </div>
+
+        <div class="form-row field-abstract">
+
+
+                <div>
+
+
+                        <label for="id_abstract">博客摘要:</label>
+
+                            <textarea name="abstract" cols="40" rows="10" class="vLargeTextField" maxlength="128" id="id_abstract">
+</textarea>
+
+
+
+                </div>
+
+        </div>
+
+        <div class="form-row field-visiting">
+
+
+                <div>
+
+
+                        <label class="required" for="id_visiting">博客访问量:</label>
+
+                            <input type="number" name="visiting" value="0" class="vIntegerField" min="0" required id="id_visiting" />
+
+
+
+                </div>
+
+        </div>
+
+        <div class="form-row field-category">
+
+
+                <div>
+
+
+                        <label class="required" for="id_category">博客分类:</label>
+
+                            <div class="related-widget-wrapper">
+    <select name="category" required id="id_category" multiple="multiple">
+  <option value="1">技术分享</option>
+
+  <option value="2">原创文章</option>
+
+  <option value="3">热点新闻</option>
+
+</select>
+
+        <a class="related-widget-wrapper-link add-related" id="add_id_category"
+            href="/admin/blog/category/add/?_to_field=id&amp;_popup=1"
+            title="增加另一个 博客分类"><img src="/static/admin/img/icon-addlink.svg" alt="增加"/></a>
+
+</div>
+
+
+
+                        <div class="help">按住 ”Control“，或者Mac上的 “Command”，可以选择多个。</div>
+
+                </div>
+
+        </div>
+
+        <div class="form-row field-tags">
+
+
+                <div>
+
+
+                        <label class="required" for="id_tags">博客标签:</label>
+
+                            <div class="related-widget-wrapper">
+    <select name="tags" required id="id_tags" multiple="multiple">
+  <option value="1">python</option>
+
+  <option value="2">django</option>
+
+  <option value="3">AI</option>
+
+  <option value="4">Mysql</option>
+
+  <option value="5">pycharm</option>
+
+</select>
+
+        <a class="related-widget-wrapper-link add-related" id="add_id_tags"
+            href="/admin/blog/tag/add/?_to_field=id&amp;_popup=1"
+            title="增加另一个 博客标签"><img src="/static/admin/img/icon-addlink.svg" alt="增加"/></a>
+
+</div>
+                        <div class="help">按住 ”Control“，或者Mac上的 “Command”，可以选择多个。</div>
+                </div>
+        </div>
+
+</fieldset>
+<div class="submit-row">
+<input type="submit" value="保存" class="default" name="_save" />
+
+
+<input type="submit" value="保存并增加另一个" name="_addanother" />
+<input type="submit" value="保存并继续编辑" name="_continue" />
+</div>
+
+
+
+    <script type="text/javascript"
+            id="django-admin-form-add-constants"
+            src="/static/admin/js/change_form.js"
+
+                data-model-name="entry"
+            >
+    </script>
+
+
+
+
+<script type="text/javascript"
+        id="django-admin-prepopulated-fields-constants"
+        src="/static/admin/js/prepopulate_init.js"
+        data-prepopulated-fields="[]">
+</script>
+
+
+</div>
+</form>
+        </div>
+{% endblock %}
